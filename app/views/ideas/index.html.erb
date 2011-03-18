@@ -1,0 +1,10 @@
+<%= button_to 'Share an idea', new_idea_path, :method => :get, :class => 'button', :id => 'share' %>
+
+<h1>ideas</h1>
+
+<% @ideas.each do |idea| %>
+  <div>
+    <h3><%= link_to idea.title, idea %></h3>
+  </div>
+<% end %>
+

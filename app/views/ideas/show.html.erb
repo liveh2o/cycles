@@ -1,0 +1,18 @@
+<%= link_to '← Back to all ideas', ideas_path, :id => 'link-back' %>
+<h4><%= @idea.app.name %></h4>
+<h2><%= @idea.title %></h2>
+<p>Shared by <%= @idea.creator.name %></p>
+<p>Votes: <%= @idea.votes_count || 0 %></p>
+<% @idea.comments.reject(&:new_record?).each do |comment| %>
+<p class="comment"><strong><%= comment.creator.name %> said:</strong><br/> <%= comment.body %></p>
+<% end %>
+<%= button_to '+1', idea_votes_path(@idea), :method => :post unless @idea.already_voted?(current_user)  %>
+<%= form_for :comment, :url => idea_comments_path(@idea) do |f| %>
+    <div class="field">
+        <%= f.label :body, 'Comment on this idea:' %><br/>
+        <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+        <%= f.submit 'Save your comment' %>
+    </div>
+<% end %>

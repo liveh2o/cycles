@@ -1,0 +1,30 @@
+<%= form_for(@idea) do |f| %>
+  <% if @idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+      <% @idea.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :app_id, 'Choose an app' %><br />
+    <%= f.select :app_id, app_options, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :title, 'Give it a name' %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  <% f.fields_for :comments do |ff| %>
+    <%= ff.label :body, 'Describe it' %><br />
+    <%= ff.text_area :body %>
+  <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Add this idea', :class => 'gray button' %> <small>or <%= link_to('Cancel',:back) %></small>
+  </div>
+<% end %>

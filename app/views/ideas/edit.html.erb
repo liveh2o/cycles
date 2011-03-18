@@ -1,0 +1,5 @@
+<%= link_to 'Back to all ideas', ideas_path %> | <%= link_to 'Delete this idea', @idea, :confirm => 'Are you sure?', :method => :delete %>
+
+<h1>Editing <%= @idea.name %></h1>
+
+<%= render 'form' %>

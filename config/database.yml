@@ -1,0 +1,18 @@
+common: &common
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *common
+  database: cycles_development
+
+test:
+  <<: *common
+  database: cycles_test
+  
+production:
+  <<: *common
+  database: cycles_production

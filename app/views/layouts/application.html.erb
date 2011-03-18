@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cycles</title>
+  <%= stylesheet_link_tag 'application.css' %>
+  <!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="wrapper">
+        <header class="main">
+            <h1>cycles</h1>
+            <nav>
+                <%= link_to('Sign out', "#") %>
+            </nav>
+        </header>
+        <section class="main">
+            <%= yield %>
+        </section>
+    </div>
+</body>
+</html>
