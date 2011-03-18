@@ -5,7 +5,7 @@
 <% @ideas.each do |idea| %>
   <div>
     <h3><%= link_to idea.title, idea %></h3>
-    <p>Suggested by <%= idea.creator.name %> <%= idea.votes_count %> votes</p>
+    <p>Shared by <%= idea.creator.name %> <%= idea.votes_count %> votes</p>
   </div>
 <% end %>
 
