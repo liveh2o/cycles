@@ -37,10 +37,11 @@ class Seeder
   
   def self.seed_votes(records)
     people = Person.select(:id).map {|o| o.id}
-        
+
     Idea.all.each do |idea|
+      voters = people.dup
       Vote.populate records do |vote|
-        vote.person_id = people.pop
+        vote.person_id = voters.pop
         vote.idea_id   = idea.id
         Idea.increment_counter(:votes_count,idea.id)
       end
