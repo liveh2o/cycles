@@ -1,12 +1,12 @@
 class IdeasController < ApplicationController
   # GET /ideas
   def index
-    @ideas = Idea.includes(:creator).all
+    @ideas = Idea.includes(:app,:creator).all
   end
 
   # GET /ideas/1
   def show
-    @idea = Idea.includes(:comments => :creator).find(params[:id])
+    @idea = Idea.includes(:app,{:comments => :creator},:voters).find(params[:id])
   end
 
   # GET /ideas/new
