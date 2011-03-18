@@ -22,6 +22,10 @@ namespace :db do
         Seeder.seed_ideas(50)
         Seeder.seed_votes(1..count)
         Seeder.seed_comments(1..count)
+        
+        Idea.order('votes_count desc').each_with_index do |idea,index|
+          idea.insert_at(index+1)
+        end
       end
     end
     
