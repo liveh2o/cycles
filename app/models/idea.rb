@@ -8,7 +8,7 @@ class Idea < ActiveRecord::Base
   has_many :voters, :through => :votes, :source => :person
   
   accepts_nested_attributes_for :comments
-    
+
   attr_accessible :app_id, :title, :comments_attributes
   
   validates_presence_of :app_id, :title
@@ -17,6 +17,14 @@ class Idea < ActiveRecord::Base
   
   def already_voted?(person)
     voters.include?(person)
+  end
+  
+  def cycling?
+    false
+  end
+  
+  def implemented?
+    false
   end
 
   def move_up

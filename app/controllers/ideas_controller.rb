@@ -47,7 +47,7 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.find(params[:id])
     @idea.upgrade
     
-    redirect_to(@idea, :notice => "Idea has been upgraded to #{@idea.status}")
+    redirect_to(idea_url(@idea), :notice => "Idea has been upgraded")
   end
 
   # DELETE /ideas/1
