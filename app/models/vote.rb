@@ -5,4 +5,11 @@ class Vote < ActiveRecord::Base
   attr_accessible # No mass assignment...
   
   validates_uniqueness_of :idea_id, :scope => :person_id
+  
+  after_create :move_idea_up
+  
+  private
+    def move_idea_up
+      idea.move_up
+    end
 end
