@@ -3,9 +3,9 @@
 <h1>ideas</h1>
 
 <% @ideas.each do |idea| %>
-  <div>
-    <h3><%= link_to idea.title, idea %></h3>
+<div>
+    <h3><%= link_to idea.title, idea %> <small><em><%= idea.app.name %></em></small></h3>
     <p>Shared by <%= idea.creator.name %> <%= idea.votes_count %> votes</p>
-  </div>
+</div>
 <% end %>
 
