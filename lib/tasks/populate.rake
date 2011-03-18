@@ -8,7 +8,7 @@ namespace :db do
     desc "Erase and fill the comments table"
     task :comments => :environment do
       ActiveRecord::Migration.say_with_time "Populating comments..." do
-        [Comment].each(&:delete_all)
+        Comment.delete_all
         Seeder.seed_comments(1..10)
       end
     end
@@ -16,9 +16,12 @@ namespace :db do
     desc "Erase and fill the ideas table"
     task :ideas => :environment do
       ActiveRecord::Migration.say_with_time "Populating ideas..." do
-        [Comment,Idea].each(&:delete_all)
+        count = Person.count
+        
+        [Comment,Idea,Vote].each(&:delete_all)
         Seeder.seed_ideas(50)
-        Seeder.seed_comments(1..10)
+        Seeder.seed_votes(1..count)
+        Seeder.seed_comments(1..count)
       end
     end
     
@@ -27,6 +30,14 @@ namespace :db do
       ActiveRecord::Migration.say_with_time "Populating people..." do
         Person.where('id > 1').delete_all
         Seeder.seed_people(9)
+      end
+    end
+    
+    desc "Erase and fill the votes table"
+    task :votes => :environment do
+      ActiveRecord::Migration.say_with_time "Populating votes..." do
+        Vote.delete_all
+        Seeder.seed_votes(1..Person.count)
       end
     end
   end

@@ -11,6 +11,7 @@ class Seeder
         comment.created_by = Populator.interpret_value(people)
         comment.updated_by = comment.created_by
         comment.idea_id    = idea.id
+        Idea.increment_counter(:comments_count,idea.id)
       end
     end
   end
@@ -31,6 +32,18 @@ class Seeder
     Person.populate records do |person|
       person.name  = Faker::Name.name
       person.email = Faker::Internet.email
+    end
+  end
+  
+  def self.seed_votes(records)
+    people = Person.select(:id).map {|o| o.id}
+        
+    Idea.all.each do |idea|
+      Vote.populate records do |vote|
+        vote.person_id = people.pop
+        vote.idea_id   = idea.id
+        Idea.increment_counter(:votes_count,idea.id)
+      end
     end
   end
 end
