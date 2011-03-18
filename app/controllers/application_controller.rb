@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   private
     def current_idea
-      @current_idea ||= idea.find(params[:idea_id] || params[:id]) if
+      @current_idea ||= Idea.find(params[:idea_id] || params[:id]) if
         params[:idea_id].present? || controller_name =~ /ideas/
     end
   

@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     @vote.person_id = current_user.id
 
     if @vote.save
-      flash[:notice] = "+1 for #{current_idea.name}." 
+      flash[:notice] = "+1 for #{current_idea.title}." 
     else
       flash[:warning] = "You already voted for this idea."
     end
