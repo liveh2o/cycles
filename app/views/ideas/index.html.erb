@@ -4,7 +4,7 @@
 
 <% @ideas.each do |idea| %>
 <div>
-    <h3><%= link_to idea.title, idea %> <small><em><%= idea.app.name %></em></small></h3>
+    <h3><%= link_to idea.title, idea_path(idea) %> <small><em><%= idea.app.name %></em></small></h3>
     <p>Shared by <%= idea.creator.name %> <%= idea.votes_count %> votes</p>
 </div>
 <% end %>
