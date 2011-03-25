@@ -3,7 +3,7 @@ class CreateIdeas < ActiveRecord::Migration
     create_table :ideas do |t|
       t.string :type
       t.string :title
-      t.integer :position
+      t.integer :priority
       t.integer :comments_count
       t.integer :votes_count
       t.integer :app_id

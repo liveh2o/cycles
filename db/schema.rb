@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20110325033919) do
   create_table "ideas", :force => true do |t|
     t.string   "type"
     t.string   "title"
-    t.integer  "position"
+    t.integer  "priority"
     t.integer  "comments_count"
     t.integer  "votes_count"
     t.integer  "app_id"
