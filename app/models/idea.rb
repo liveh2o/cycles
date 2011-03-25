@@ -1,17 +1,9 @@
-class Idea < ActiveRecord::Base
+class Idea < AbstractIdea
   default_scope :order => 'position'
   
-  belongs_to :app
-  belongs_to :creator, :class_name => 'Person', :foreign_key => :created_by
-  has_many :comments, :dependent => :delete_all
-  has_many :votes, :dependent => :delete_all
-  has_many :voters, :through => :votes, :source => :person
-  
   accepts_nested_attributes_for :comments
-
-  attr_accessible :app_id, :title, :comments_attributes
   
-  validates_presence_of :app_id, :title
+  attr_accessible :comments_attributes
   
   acts_as_list
   
@@ -19,21 +11,17 @@ class Idea < ActiveRecord::Base
     voters.include?(person)
   end
   
-  def cycling?
-    false
-  end
-  
-  def implemented?
-    false
-  end
-
   def move_up
     reload
     item = self.class.where(['votes_count > ?',votes_count]).last
     insert_at(item.position-1)
   end
   
-  def upgrade
+  def scrap
+    update_attribute(:type,'ScrappedIdea')
+  end
+  
+  def cycle
     update_attribute(:type,'CyclingIdea')
   end
 end

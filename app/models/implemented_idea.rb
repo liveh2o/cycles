@@ -1,13 +1,3 @@
-class ImplementedIdea < CyclingIdea
-  def cycling?
-    false
-  end
+class ImplementedIdea < AbstractIdea
 
-  def implemented?
-    true
-  end
-  
-  def upgrade
-    raise "Can't upgrade an implemented idea"
-  end
 end

@@ -1,9 +1,5 @@
-class CyclingIdea < Idea
-  def cycling?
-    true
-  end
-
-  def upgrade
+class CyclingIdea < AbstractIdea
+  def implemented
     update_attribute(:type,'ImplementedIdea')
   end
 end
