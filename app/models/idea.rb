@@ -1,11 +1,11 @@
 class Idea < AbstractIdea
-  default_scope :order => 'position'
-  
+  include RankedModel
+
   accepts_nested_attributes_for :comments
   
   attr_accessible :comments_attributes
-  
-  acts_as_list
+
+  ranks :priority
   
   def already_voted?(person)
     voters.include?(person)
@@ -14,7 +14,7 @@ class Idea < AbstractIdea
   def move_up
     reload
     item = self.class.where(['votes_count > ?',votes_count]).last
-    insert_at(item.position-1)
+    update_attribute(:priority,item.priority+1)
   end
   
   def scrap

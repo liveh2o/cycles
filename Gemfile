@@ -4,6 +4,8 @@ gem 'rails', '3.0.5'
 gem 'jquery-rails'
 gem 'mysql2'
 
+gem 'ranked-model'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
