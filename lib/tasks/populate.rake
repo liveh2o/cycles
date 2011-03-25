@@ -18,7 +18,7 @@ namespace :db do
       ActiveRecord::Migration.say_with_time "Populating ideas..." do
         count = Person.count
         
-        [Comment,Idea,Vote].each(&:delete_all)
+        [Comment,AbstractIdea,Vote].each(&:delete_all)
         Seeder.seed_ideas(50)
         Seeder.seed_votes(1..count)
         Seeder.seed_comments(1..count)
