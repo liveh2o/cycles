@@ -12,4 +12,13 @@ module IdeasHelper
       end
     end
   end
+  
+  def ideas_nav
+    nav = ''.html_safe
+    nav += link_to_unless_current 'shared', ideas_path
+    %w(cycling implemented scrapped).each do |type|
+      nav += link_to_unless_current(type, eval("#{type}_ideas_path"))
+    end
+    nav
+  end
 end

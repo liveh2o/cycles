@@ -1,11 +1,16 @@
+<nav class="links">
+    <%= ideas_nav %>
+</nav>
 <%= button_to 'Share an idea', new_idea_path, :method => :get, :class => 'button', :id => 'share' %>
-
-<h1>ideas</h1>
-
+<h1><%= action_name unless action_name == 'index' %> ideas</h1>
+<div id="ideas">
 <% @ideas.each do |idea| %>
-<div>
-    <h3><%= link_to idea.title, idea_path(idea) %> <small><em><%= idea.app.name %></em></small></h3>
-    <p>Shared by <%= idea.creator.name %> <%= idea.votes_count %> votes</p>
-</div>
+    <%= link_to idea_path(idea) do %>
+        <div class="idea">
+            <h3><%= idea.title %> <small><em><%= idea.app.name %></em></small></h3>
+            <p>Shared by <%= idea.creator.name %> &#8212; <%= idea.votes_count %> votes</p>
+        </div>
+    <% end %>
 <% end %>
+</div>
 
