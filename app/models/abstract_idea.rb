@@ -3,8 +3,8 @@ class AbstractIdea < ActiveRecord::Base
 
   belongs_to :app
   belongs_to :creator, :class_name => 'Person', :foreign_key => :created_by
-  has_many :comments, :dependent => :delete_all
-  has_many :votes, :dependent => :delete_all
+  has_many :comments, :foreign_key => :idea_id, :dependent => :delete_all
+  has_many :votes, :foreign_key => :idea_id, :dependent => :delete_all
   has_many :voters, :through => :votes, :source => :person
 
   attr_accessible :app_id, :title
