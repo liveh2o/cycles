@@ -5,9 +5,22 @@ body {
   font:11pt Arial, sans-serif;
 }
 
-a { color: #000; }
+a { 
+  color: #000;
+  padding:1px 2px 2px;
+  
+  transition: background-color .08s ease-in;
+  -moz-transition: background-color .08s ease-in;
+  -o-transition: background-color .08s ease-in;
+  -webkit-transition: background-color .08s ease-in;
+
+  transition: color .08s ease-in;
+  -moz-transition: color .08s ease-in;
+  -o-transition: color .08s ease-in;
+  -webkit-transition: color .08s ease-in;
+}
 a:visited { color: #000; }
-a:hover { color: #fff; background-color:#000; }
+a:hover { color: #fff; background-color:#333; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family:Helvetica;
@@ -72,9 +85,6 @@ header.main h1 {
 header.main nav {
   float:right;
 }
-header.main nav a, header.main nav a:visited {
-  color:#000;
-}
 
 section.main {
   background:#fff;
@@ -99,19 +109,14 @@ nav.links {
   margin-bottom:10px;
 }
 nav.links a {
-  margin:0 4px;
+  margin:0 2px;
 }
 
 div#ideas {
   margin-top:20px;
 }
 div#ideas a {
-  background-color:#fff;
-  
-  transition: background-color .1s ease-in;
-  -moz-transition: background-color .1s ease-in;
-  -o-transition: background-color .1s ease-in;
-  -webkit-transition: background-color .1s ease-in;
+  padding:0;
 }
 div#ideas a:hover {
   display:block;
