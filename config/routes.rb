@@ -5,7 +5,11 @@ Cycles::Application.routes.draw do
     resources :comments, :except => [:index, :show, :new]
     resources :votes, :only => [:create]
     
-    member { put :upgrade }
+    collection do
+      get :cycling
+      get :implemented
+      get :scrapped
+    end
   end
 
   resources :people

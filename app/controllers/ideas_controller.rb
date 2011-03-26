@@ -3,6 +3,27 @@ class IdeasController < ApplicationController
   def index
     @ideas = Idea.includes(:app,:creator).all
   end
+  
+  # GET /ideas/cycling
+  def cycling
+    @ideas = CyclingIdea.includes(:app,:creator).all
+    
+    render :index
+  end
+
+  # GET /ideas/implemented
+  def implemented
+    @ideas = ImplementedIdea.includes(:app,:creator).all
+    
+    render :index
+  end
+
+  # GET /ideas/scrapped
+  def scrapped
+    @ideas = ScrappedIdea.includes(:app,:creator).all
+    
+    render :index
+  end
 
   # GET /ideas/1
   def show
@@ -27,7 +48,7 @@ class IdeasController < ApplicationController
     if @idea.save
       redirect_to(@idea, :notice => 'Idea was successfully created.')
     else
-      render :action => "new"
+      render :new
     end
   end
 
@@ -38,23 +59,15 @@ class IdeasController < ApplicationController
     if @idea.update_attributes(params[:idea])
       redirect_to(@idea, :notice => 'Idea was successfully updated.')
     else
-      render :action => "edit"
+      render :edit
     end
-  end
-
-  # PUT /ideas/1/upgrade
-  def upgrade
-    @idea = current_user.ideas.find(params[:id])
-    @idea.upgrade
-    
-    redirect_to(idea_url(@idea), :notice => "Idea has been upgraded")
   end
 
   # DELETE /ideas/1
   def destroy
     @idea = current_user.ideas.find(params[:id])
-    @idea.destroy
+    @idea.scrap
 
-    redirect_to(ideas_url)
+    redirect_to(ideas_url, :notice => 'Idea was successfully scrapped.')
   end
 end
