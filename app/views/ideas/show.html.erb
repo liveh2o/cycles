@@ -8,6 +8,7 @@
 <% end %>
 <%= button_to '+1', idea_votes_path(@idea), :method => :post unless @idea.already_voted?(current_user)  %>
 <%= cycle_button(@idea) %>
+<%= button_to 'Scrap this idea', idea_path(@idea), :method => :delete, :confirm => 'Are you sure?' if @idea.scrappable?  %>
 <%= form_for :comment, :url => idea_comments_path(@idea) do |f| %>
     <div class="field">
         <%= f.label :body, 'Comment on this idea:' %><br/>

@@ -18,6 +18,10 @@ class AbstractIdea < ActiveRecord::Base
   def implemented?
     is_a?(ImplementedIdea)
   end
+
+  def scrappable?
+    respond_to?(:scrap)
+  end
   
   def scrapped?
     is_a?(ScrappedIdea)
