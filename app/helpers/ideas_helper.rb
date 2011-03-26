@@ -6,9 +6,9 @@ module IdeasHelper
   def cycle_button(idea)
     unless idea.implemented?
       if idea.cycling?
-        button_to 'Implemented', upgrade_idea_path(idea), :method => :put
+        button_to 'Implemented', '#'
       else
-        button_to 'Start cycle', upgrade_idea_path(idea), :method => :put
+        button_to 'Start cycle', '#'
       end
     end
   end
