@@ -6,21 +6,21 @@ class IdeasController < ApplicationController
   
   # GET /ideas/cycling
   def cycling
-    @ideas = CyclingIdea.includes(:app,:creator).all
+    @ideas = CyclingIdea.includes(:app,:creator)
     
     render :index
   end
 
   # GET /ideas/implemented
   def implemented
-    @ideas = ImplementedIdea.includes(:app,:creator).all
+    @ideas = ImplementedIdea.includes(:app,:creator)
     
     render :index
   end
 
   # GET /ideas/scrapped
   def scrapped
-    @ideas = ScrappedIdea.includes(:app,:creator).all
+    @ideas = ScrappedIdea.includes(:app,:creator)
     
     render :index
   end
