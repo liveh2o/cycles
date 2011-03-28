@@ -1,20 +1,27 @@
-<%= link_to '← Back to all ideas', ideas_path, :id => 'link-back' %>
-<h4><%= @idea.app.name %></h4>
-<h2><%= @idea.title %></h2>
-<p>Shared by <%= @idea.creator.name %></p>
-<p>Votes: <%= @idea.votes_count || 0 %></p>
-<% @idea.comments.reject(&:new_record?).each do |comment| %>
-<p class="comment"><strong><%= comment.creator.name %> said:</strong><br/> <%= comment.body %></p>
+<section id="idea">
+    <%= link_to '← Back to shared ideas', ideas_path, :id => 'link-back' %>
+    <h4 class="app"><%= @idea.app.name %></h4>
+    <h2><%= @idea.title %></h2>
+    <p>Shared by <%= @idea.creator.name %></p>
+    <% @idea.comments.each do |comment| %>
+    <p class="comment"><strong><%= comment.creator.name %> said:</strong><br/> <%= comment.body %></p>
+    <% end %>
+    <%= button_to '+1', idea_votes_path(@idea), :method => :post, :class => 'gray button smallest' unless @idea.already_voted?(current_user)  %>
+    <%= cycle_button(@idea) %>
+    <%= button_to 'Scrap this idea', idea_path(@idea), :method => :delete, :confirm => 'Are you sure?', :class => 'gray button smallest' if @idea.scrappable?  %>
+    <%= form_for :comment, :url => idea_comments_path(@idea), :html => { :id => 'new_comment' } do |f| %>
+        <div class="field">
+            <%= f.label :body, 'Leave a comment...' %>
+            <%= f.text_area :body %>
+        </div>
+        <div class="actions">
+            <%= f.submit 'Add this comment', :class => 'gray button smaller' %>
+        </div>
+    <% end unless @idea.implemented? %>
+</section>
+<aside id="people">
+  <h4><%= @idea.votes_count || 'no' %> votes</h4>
+<% @idea.voters.each do |voter| %>
+    <%= voter.name %> +1<br/>
 <% end %>
-<%= button_to '+1', idea_votes_path(@idea), :method => :post unless @idea.already_voted?(current_user)  %>
-<%= cycle_button(@idea) %>
-<%= button_to 'Scrap this idea', idea_path(@idea), :method => :delete, :confirm => 'Are you sure?' if @idea.scrappable?  %>
-<%= form_for :comment, :url => idea_comments_path(@idea) do |f| %>
-    <div class="field">
-        <%= f.label :body, 'Comment on this idea:' %><br/>
-        <%= f.text_area :body %>
-    </div>
-    <div class="actions">
-        <%= f.submit 'Save your comment' %>
-    </div>
-<% end unless @idea.implemented? %>
+</aside>

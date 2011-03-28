@@ -6,9 +6,9 @@ module IdeasHelper
   def cycle_button(idea)
     unless idea.implemented?
       if idea.cycling?
-        button_to 'Implemented', '#'
+        button_to 'Implemented', '#', :class => 'gray button smallest'
       else
-        button_to 'Start cycle', '#'
+        button_to 'Start cycle', '#', :class => 'gray button smallest'
       end
     end
   end

@@ -27,7 +27,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1
   def show
-    @idea = Idea.includes(:app,{:comments => :creator},:voters).find(params[:id])
+    @idea = Idea.includes(:app,{ :comments => :creator },:voters,:creator).find(params[:id])
   end
 
   # GET /ideas/new
