@@ -1,12 +1,12 @@
 <section id="idea">
-    <%= link_to '← Back to shared ideas', ideas_path, :id => 'link-back' %>
+    <%= back_to_ideas_link(@idea) %>
     <h4 class="app"><%= @idea.app.name %></h4>
     <h2><%= @idea.title %></h2>
     <p>Shared by <%= @idea.creator.name %></p>
     <% @idea.comments.each do |comment| %>
     <p class="comment"><strong><%= comment.creator.name %> said:</strong><br/> <%= comment.body %></p>
     <% end %>
-    <%= button_to '+1', idea_votes_path(@idea), :method => :post, :class => 'gray button smallest' unless @idea.already_voted?(current_user)  %>
+    <%= button_to '+1', idea_votes_path(@idea), :method => :post, :class => 'gray button smallest' if @idea.votable? && !@idea.already_voted?(current_user)  %>
     <%= cycle_button(@idea) %>
     <%= button_to 'Scrap this idea', idea_path(@idea), :method => :delete, :confirm => 'Are you sure?', :class => 'gray button smallest' if @idea.scrappable?  %>
     <%= form_for :comment, :url => idea_comments_path(@idea), :html => { :id => 'new_comment' } do |f| %>

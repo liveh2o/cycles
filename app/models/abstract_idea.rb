@@ -26,4 +26,8 @@ class AbstractIdea < ActiveRecord::Base
   def scrapped?
     is_a?(ScrappedIdea)
   end
+
+  def votable?
+    respond_to?(:cycle)
+  end
 end
