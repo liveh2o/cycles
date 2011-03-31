@@ -7,9 +7,9 @@ class AbstractIdea < ActiveRecord::Base
   has_many :votes, :foreign_key => :idea_id, :dependent => :delete_all
   has_many :voters, :through => :votes, :source => :person
 
-  attr_accessible :app_id, :title
+  attr_accessible :title
   
-  validates_presence_of :app_id, :title
+  validates_presence_of :title
 
   def cycling?
     is_a?(CyclingIdea)
