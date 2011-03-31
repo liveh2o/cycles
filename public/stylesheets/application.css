@@ -60,6 +60,15 @@ small {
   font-size:.75em;
 }
 
+textarea {
+  border:1px solid #ccc;
+  font-family:Arial;
+  font-size:1em;
+  height:100px;
+  padding:5px;  
+  width:550px;
+}
+
 #wrapper {
   margin:0 auto;
   position:relative;
@@ -133,6 +142,30 @@ div.idea p {
   font-size:.9em;
 }
 
+form#new_idea div.actions {
+  margin-top:30px;
+}
+
+div.field {
+  overflow:hidden;
+  margin:10px 0;
+}
+div.field input {
+  font-size:1.25em;
+  padding:5px 3px;
+  width:550px;
+}
+div.field label {
+  color:#777;
+  display:block;
+  font-size:1.05em;
+  margin:10px 0 2px;
+}
+div.field select {
+  font-size:1em;
+  padding:2px 3px 2px 0;
+}
+
 section#idea {
   float:left;
   position:relative;
@@ -186,11 +219,6 @@ section#idea .button.smallest {
 #new_comment label{
   display:block;
   margin:10px 0 5px;
-}
-#new_comment textarea {
-  border:1px solid #ccc;
-  height:100px;
-  width:550px;
 }
 
 aside#people {

@@ -1,8 +1,7 @@
 <%= form_for(@idea) do |f| %>
   <% if @idea.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
-
+      <h3><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h3>
       <ul>
       <% @idea.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,18 +10,18 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :app_id, 'Choose an app' %><br />
-    <%= f.select :app_id, app_options, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :title, 'Give it a name' %><br />
+    <%= f.label :title, 'Give it a name' %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-  <% f.fields_for :comments do |ff| %>
-    <%= ff.label :body, 'Describe it' %><br />
+  <%= f.fields_for :comments do |ff| %>
+    <%= ff.label :body, 'Describe it' %>
     <%= ff.text_area :body %>
   <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :app_id, 'Does it relate to an app?' %>
+    <%= f.select :app_id, app_options, :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit 'Add this idea', :class => 'gray button smaller' %> <small>or <%= link_to('Cancel',:back) %></small>
