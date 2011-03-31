@@ -1,8 +1,11 @@
 <section id="idea">
     <%= back_to_ideas_link(@idea) %>
+    <% if @idea.app.present %>
     <h4 class="app"><%= @idea.app.name %></h4>
+    <% end %>
     <h2><%= @idea.title %></h2>
     <p>Shared by <%= @idea.creator.name %></p>
+    <p class="comment"><%= @idea.comments.shift.body %></p>
     <% @idea.comments.each do |comment| %>
     <p class="comment"><strong><%= comment.creator.name %> said:</strong><br/> <%= comment.body %></p>
     <% end %>
