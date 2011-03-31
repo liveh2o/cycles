@@ -10,6 +10,8 @@ Cycles::Application.routes.draw do
       get :implemented
       get :scrapped
     end
+    
+    member { put :escalate }
   end
 
   resources :people

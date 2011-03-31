@@ -4,9 +4,10 @@ class CreateIdeas < ActiveRecord::Migration
       t.string :type
       t.string :title
       t.integer :priority
-      t.integer :comments_count
-      t.integer :votes_count
+      t.boolean :escalated,      :default => false
       t.integer :app_id
+      t.integer :comments_count 
+      t.integer :votes_count
 
       t.identities
       t.timestamps

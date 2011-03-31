@@ -63,6 +63,16 @@ class IdeasController < ApplicationController
     end
   end
 
+  # PUT /ideas/1/escalate  
+  def escalate
+    @idea = Idea.find(params[:id])
+    @idea.toggle!(:escalated)
+
+    up_or_down = @idea.escalated? ? 'escalated' : 'downgraded'
+    
+    redirect_to(@idea)
+  end
+
   # DELETE /ideas/1
   def destroy
     @idea = current_user.ideas.find(params[:id])

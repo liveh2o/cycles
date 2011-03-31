@@ -33,6 +33,19 @@ module IdeasHelper
     end
   end
   
+  def escalate_button(idea)
+    escalate_text = idea.escalated? ? 'De-escalate' : 'Escalate'
+    button_to escalate_text, escalate_idea_path(idea), :method => :put, :confirm => 'Are you sure?', :class => 'gray button smallest' if idea.escalateable?
+  end
+  
+  def escalated_or_votes(idea)
+    if idea.escalated?
+      "escalated"
+    else
+      "#{idea.votes_count} votes"
+    end
+  end
+  
   def ideas_nav
     nav = ''.html_safe
     nav += link_to_unless_current 'shared', ideas_path

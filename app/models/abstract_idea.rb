@@ -7,7 +7,7 @@ class AbstractIdea < ActiveRecord::Base
   has_many :votes, :foreign_key => :idea_id, :dependent => :delete_all
   has_many :voters, :through => :votes, :source => :person
 
-  attr_accessible :title
+  attr_accessible :title, :escalated
   
   validates_presence_of :title
 
@@ -15,6 +15,10 @@ class AbstractIdea < ActiveRecord::Base
     is_a?(CyclingIdea)
   end
   
+  def escalateable?
+    votable?
+  end
+
   def implemented?
     is_a?(ImplementedIdea)
   end

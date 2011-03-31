@@ -1,6 +1,6 @@
 <section id="idea">
     <%= back_to_ideas_link(@idea) %>
-    <% if @idea.app.present %>
+    <% if @idea.app.present? %>
     <h4 class="app"><%= @idea.app.name %></h4>
     <% end %>
     <h2><%= @idea.title %></h2>
@@ -11,6 +11,7 @@
     <% end %>
     <%= button_to '+1', idea_votes_path(@idea), :method => :post, :class => 'gray button smallest' if @idea.votable? && !@idea.already_voted?(current_user)  %>
     <%= cycle_button(@idea) %>
+    <%= escalate_button(@idea) %>
     <%= button_to 'Scrap this idea', idea_path(@idea), :method => :delete, :confirm => 'Are you sure?', :class => 'gray button smallest' if @idea.scrappable?  %>
     <%= form_for :comment, :url => idea_comments_path(@idea), :html => { :id => 'new_comment' } do |f| %>
         <div class="field">
