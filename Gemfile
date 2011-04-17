@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.6'
 gem 'jquery-rails'
 gem 'mysql2'
 
@@ -11,7 +11,7 @@ group :development, :test do
   gem 'faker'
   gem 'mocha', :require => false
   gem 'populator'
-  gem 'shoulda', '~> 2.10.3'
+  gem 'shoulda', '~> 2.11.3'
   gem 'simplecov', :require => false
 end
 
