@@ -1,7 +1,8 @@
 class IdeasController < ApplicationController
   # GET /ideas
   def index
-    @ideas = Idea.rank(:priority).includes(:app,:creator)
+    @escalated = Idea.escalated.rank(:priority).includes(:app,:creator)
+    @normal = Idea.normal.rank(:priority).includes(:app,:creator)
   end
   
   # GET /ideas/cycling

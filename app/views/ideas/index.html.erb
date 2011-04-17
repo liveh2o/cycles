@@ -4,7 +4,15 @@
 <%= button_to 'Share an idea', new_idea_path, :method => :get, :class => 'button', :id => 'share' %>
 <h1><%= action_name unless action_name == 'index' %> ideas</h1>
 <div id="ideas">
-<% @ideas.each do |idea| %>
+<% @escalated.each do |idea| %>
+    <%= link_to idea_path(idea) do %>
+        <div class="idea">
+            <h3><%= idea.title %> <small><em><%= idea.app.name %></em></small></h3>
+            <p>Shared by <%= idea.creator.name %> &#8212; <%= escalated_or_votes(idea) %></p>
+        </div>
+    <% end %>
+<% end %>
+<% @normal.each do |idea| %>
     <%= link_to idea_path(idea) do %>
         <div class="idea">
             <h3><%= idea.title %> <small><em><%= idea.app.name %></em></small></h3>
@@ -13,4 +21,3 @@
     <% end %>
 <% end %>
 </div>
-
