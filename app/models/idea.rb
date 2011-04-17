@@ -4,6 +4,9 @@ class Idea < AbstractIdea
   accepts_nested_attributes_for :comments
   
   attr_accessible :comments_attributes
+  
+  scope :escalated, where(:escalated => true)
+  scope :normal, where(:escalated => false)
 
   ranks :priority
   
